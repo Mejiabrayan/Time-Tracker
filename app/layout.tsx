@@ -15,17 +15,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en' className={GeistSans.className}>
-      <body className='relative flex min-h-screen z-10'>
-        <aside className='sticky top-0 z-40 hidden h-screen border-r md:block md:w-[200px] bg-white shadow-md'>
-          <Sidebar />
-        </aside>
+    <html lang="en" className={GeistSans.className}>
+    <body className="relative flex min-h-screen bg-gray-100">
+      <aside className="sticky top-0 hidden md:block w-1/4 min-h-screen bg-[#f9fafb] shadow-sm md:w-[200px]">
+        <Sidebar />
+      </aside>
 
-        <main className='max-w-6xl mx-auto min-h-screen'>
-          {children}
-          <Toaster />
-        </main>
-      </body>
-    </html>
+      <main className="max-w-6xl mx-auto w-full p-4">
+        {children}
+      </main>
+      <Toaster />
+    </body>
+  </html>
   );
 }

@@ -2,6 +2,7 @@
 
 import { ILog, useLogStore } from '@/app/store';
 import React, { useRef } from 'react';
+import dayjs from 'dayjs';
 
 export default function InitLog({ logs }: { logs: ILog[] }) {
   const initRef = useRef<boolean>();
@@ -12,7 +13,10 @@ export default function InitLog({ logs }: { logs: ILog[] }) {
     } = {};
 
     logs.forEach((log) => {
-      result[log.date as string] = {...log, date: new Date(log.date)}
+      // Add a condition to exclude logs that have been deleted
+      if (log.date) {
+        result[dayjs(log.date).format('YYYY-MM-DD')] = log;
+      }
     });
 
     return result;

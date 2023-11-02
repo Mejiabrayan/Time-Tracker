@@ -3,8 +3,8 @@ import { create } from 'zustand';
 export type ILog = {
   note: string;
   hour: number;
-  date: Date | string
-}; 
+  date: Date | string;
+};
 
 interface LogState {
   log: ILog;
@@ -14,6 +14,8 @@ interface LogState {
   setDate: (date: Date) => void;
   setLog: (log: ILog) => void;
   setLogs: (log: ILog, key: string) => void;
+  deleteLog: (date: string) => void;
+
   //he void keyword is  used to indicate that a function does not return a value
   //It is used as a return type for functions that perform some action but do not produce a result.
 }
@@ -30,6 +32,7 @@ export const useLogStore = create<LogState>()((set) => ({
   setLogs: (log: ILog, key: string) =>
     set((state) => {
       const updateLog = { ...state.logs, [key]: log };
+      const deleteLog = { ...state.logs };
       const sortedKeys = Object.keys(updateLog).sort();
       const sortObject: {
         [key: string]: ILog;
@@ -38,6 +41,13 @@ export const useLogStore = create<LogState>()((set) => ({
       for (const key of sortedKeys) {
         sortObject[key] = updateLog[key];
       }
-      return {logs: sortObject};
+      return { logs: sortObject };
     }),
+  deleteLog: (date: string) => { 
+    set((state) => {
+      const deleteLog = { ...state.logs };
+      delete deleteLog[date];
+      return { logs: deleteLog };
+    });
+  },
 }));

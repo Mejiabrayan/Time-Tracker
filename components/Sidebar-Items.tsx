@@ -13,18 +13,19 @@ export default function SidebarItem({ ...props }) {
   const router = useRouter();
   const supabase = createClientComponentClient();
 
-  const handleLogin = async () => {
-    await supabase.auth.signOut();
-    router.refresh();
-  };
-
   const tabs = useMemo(() => {
     return [
       {
-        name: 'Dashboard',
+        name: 'Home',
         href: '/',
         isActive: pathName === '/',
-        icon: <Icons.home width={18} />,
+        icon: <Icons.home width={18} className='fill-zinc-300 text-gray-500' />,
+      },
+      {
+        name: 'Logs',
+        href: '/logs',
+        isActive: pathName === '/logs',
+        icon: <Icons.star width={18} />,
       },
     ];
   }, [pathName]);
@@ -33,13 +34,13 @@ export default function SidebarItem({ ...props }) {
       {tabs.map(({ name, href, isActive, icon }) => (
         <li key={name}>
           <Link
-            className={`flex items-center space-x-2 ${
-              isActive ? 'text-slate-500' : ''
-            } rounded-lg px-2 py-1 transition-all duration-150 ease-in-out  hover:bg-black/70 hover:text-white active:bg-secondary/40`}
             href={href}
             {...props}
+            className={`flex items-center space-x-2 rounded-lg px-2 py-1 transition-all duration-150 ease-in-out ${
+              isActive ? 'text-gray-600 bg-[#e4e7eb]' : ''
+            }`}
           >
-            <span className='bg-slate-6 text-slate-12 flex h-8 items-center gap-2 rounded-md px-2 text-sm'>
+            <span className=' text-gray-500 flex h-8 items-center gap-2 rounded-md px-2 text-[1.rem]'>
               {icon}
               {name}
             </span>

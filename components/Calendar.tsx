@@ -26,7 +26,7 @@ export default function Calendar() {
 
 	const getColor = (value: number) => {
 		if (value === 0) {
-			return "bg-gray-100";
+			return "bg-gray-400";
 		} else if (value < 5) {
 			return "bg-green-100";
 		} else if (value < 10) {

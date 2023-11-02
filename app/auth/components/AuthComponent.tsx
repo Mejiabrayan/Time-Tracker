@@ -26,7 +26,7 @@ export default function AuthComponent() {
   };
   return (
     <div className='p-5  min-h-screen flex flex-col justify-center items-center'>
-      <div className='max-w-md w-full items-center justify-center'>
+      <div className='max-w-md w-full items-center justify-center flex'>
         <Card>
           <CardHeader>
             <CardTitle className='text-center'>Sign In</CardTitle>
@@ -51,7 +51,7 @@ export default function AuthComponent() {
               className='flex items-center'
             >
               <Github size={16} className='mr-2' />
-              Login
+              Login With Github
             </Button>
           </CardFooter>
         </Card>

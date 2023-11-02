@@ -28,7 +28,6 @@ export function NewLog() {
   const log = useLogStore((state) => state.log);
   const setLog = useLogStore((state) => state.setLog);
   const setLogs = useLogStore((state) => state.setLogs);
-  const date = log.date as Date;
 
   // This function validates our logs
   const validateLog = () => {
@@ -62,6 +61,7 @@ export function NewLog() {
           description: `${log.hour} in ${date.toDateString()}`,
           variant: 'default',
         });
+        setLog({ note: '', hour: 0, date: '' }); // Clear the log
         CloseButtonDialog();
       } else {
         toast({
